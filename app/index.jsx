@@ -27,9 +27,9 @@ export default function App() {
             resizeMode="contain"
           />
           <View className="relative mt-5">
-            <Text className="text-3xl text-primary font-pbold text-center">
+            <Text className="text-3xl text-primary font-pextrabold text-center">
               Created by the greatest{" "}
-              <Text className="text-rose-500">Joseph Alforque</Text>
+              <Text className="text-rose-500 font-pbold">Joseph Alforque</Text>
             </Text>
             <Image
               source={images.path}

@@ -16,7 +16,7 @@ import { createUser } from "../../lib/appwrite";
 import { useGlobalContext } from "../../context/GlobalProvider";
 
 const SignUp = () => {
-  const { setUser, setisLoggedIn } = useGlobalContext();
+  const { setUser, setIsLoggedIn } = useGlobalContext();
 
   const [form, setForm] = useState({
     username: "",
@@ -25,7 +25,7 @@ const SignUp = () => {
     password: "",
   });
 
-  const [isSubmitting, setisSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const submit = async () => {
     if (!form.username || !form.email || !form.password) {
@@ -34,18 +34,18 @@ const SignUp = () => {
     if (form.password != form.confirmPassword)
       return Alert.alert("Are you idiot", "Password does not match!");
 
-    setisSubmitting(true);
+    setIsSubmitting(true);
 
     try {
       const result = await createUser(form.email, form.password, form.username);
       setUser(result);
-      setisLoggedIn(true);
+      setIsLoggedIn(true);
 
       router.replace("/home");
     } catch (error) {
       Alert.alert("Error", error.message);
     } finally {
-      setisSubmitting(false);
+      setIsSubmitting(false);
     }
   };
 
@@ -75,7 +75,7 @@ const SignUp = () => {
             />
             <FormField
               title="Email"
-              placeholder="Enter username"
+              placeholder="Enter email"
               value={form.email}
               handleChangeText={(e) => {
                 setForm({ ...form, email: e });
@@ -86,7 +86,7 @@ const SignUp = () => {
             />
             <FormField
               title="Password"
-              placeholder="Enter username"
+              placeholder="Enter password"
               value={form.password}
               handleChangeText={(e) => {
                 setForm({ ...form, password: e });
@@ -96,7 +96,7 @@ const SignUp = () => {
             />
             <FormField
               title="Confirm Password"
-              placeholder="Enter username"
+              placeholder="Enter confirm password"
               value={form.confirmPassword}
               handleChangeText={(e) => {
                 setForm({ ...form, confirmPassword: e });
@@ -118,7 +118,7 @@ const SignUp = () => {
               </Text>
               <Link
                 href="sign-in"
-                className="text-lg text-secondary-400q font-pextrabold"
+                className="text-lg text-secondary-400q font-pmedium"
               >
                 Sign In!
               </Link>

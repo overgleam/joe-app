@@ -16,34 +16,34 @@ import { getCurrentUser, signIn } from "../../lib/appwrite";
 import { useGlobalContext } from "../../context/GlobalProvider";
 
 const SignIn = () => {
-  const { setUser, setisLoggedIn } = useGlobalContext();
+  const { setUser, setIsLoading } = useGlobalContext();
 
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
 
-  const [isSubmitting, setisSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const submit = async () => {
     if (!form.email || !form.password) {
       return Alert.alert("Idiot!", "Please fill all fields.");
     }
 
-    setisSubmitting(true);
+    setIsSubmitting(true);
 
     try {
       await signIn(form.email, form.password);
       // const result = await getCurrentUser();
       // setUser(result);
-      // setisLoggedIn(true);
+      // setIsLoggedIn(true);
 
       Alert.alert("Login", "Successfully");
       router.replace("/home");
     } catch (error) {
       Alert.alert("Error", error.message);
     } finally {
-      setisSubmitting(false);
+      setIsSubmitting(false);
     }
   };
 
@@ -95,7 +95,7 @@ const SignIn = () => {
               </Text>
               <Link
                 href="sign-up"
-                className="text-lg text-fuchsia-500 font-pextrabold"
+                className="text-lg text-fuchsia-500 font-pmedium"
               >
                 Sign Up!
               </Link>

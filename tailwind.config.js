@@ -33,7 +33,7 @@ module.exports = {
         pbold: ["CabinetGrotesk-Bold", "sans-serif"],
         pextrabold: ["CabinetGrotesk-Extrabold", "sans-serif"],
         pblack: ["CabinetGrotesk-Black", "sans-serif"],
-        pvariable: ["CabinetGrotesk-Variable", "sans-serif"],
+        // pvariable: ["CabinetGrotesk-Variable", "sans-serif"],
       },
     },
   },

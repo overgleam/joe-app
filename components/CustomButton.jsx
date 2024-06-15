@@ -75,7 +75,7 @@ const CustomButton = ({
             animatedStyles,
           ]}
         >
-          <Text className={`text-primary font-pvariable ${textStyles}`}>
+          <Text className={`text-primary font-bold ${textStyles}`}>
             {title}
           </Text>
         </Animated.View>

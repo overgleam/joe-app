@@ -8,7 +8,6 @@ const FormField = ({
   handleChangeText,
   otherStyles,
   borderStyle,
-  ...props
 }) => {
   const [showPassword, setshowPassword] = useState(false);
 
@@ -16,7 +15,7 @@ const FormField = ({
     <View className={`space-y-2  ${otherStyles}`}>
       <Text className="text-base text-gray-200 font-pmedium">{title}</Text>
       <View
-        className={` flex-row border-2 bg-white-200 border-rose-500 h-16 px-4 bg-black-100 rounded-2xl ${borderStyle} focus:border-emerald-500 items-center `}
+        className={`w-full flex-row border-2 bg-white-200 border-rose-500 h-16 px-4 bg-black-100 rounded-2xl ${borderStyle} focus:border-emerald-500 items-center `}
       >
         <TextInput
           className="flex-1 text-primary font-pbold text-base"
@@ -24,7 +23,10 @@ const FormField = ({
           placeholder={placeholder}
           placeholderTextColor={"#7b7b8b"}
           onChangeText={handleChangeText}
-          secureTextEntry={title === "Password" && !showPassword}
+          secureTextEntry={
+            (title === "Password" || title === "Confirm Password") &&
+            !showPassword
+          }
         />
         {(title === "Password" || title === "Confirm Password") && (
           <TouchableOpacity onPress={() => setshowPassword(!showPassword)}>
