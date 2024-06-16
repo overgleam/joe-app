@@ -5,12 +5,18 @@ import images from "../../constants/images";
 import SearchInput from "../../components/SearchInput";
 import Trending from "../../components/Trending";
 import EmptyState from "../../components/EmptyState";
-import { getAllPosts } from "../../lib/appwrite";
+import { getAllPosts, getLatestPosts } from "../../lib/appwrite";
 import useAppwrite from "../../lib/useAppwrite";
 import VideoCard from "../../components/VideoCard";
 
 const Home = () => {
   const { data: posts, refetch, isLoading } = useAppwrite(getAllPosts);
+
+  const {
+    data: latestPosts,
+    refetch: latestPostsRefetch,
+    isLoading: latestPostsLoading,
+  } = useAppwrite(getLatestPosts);
 
   const [refreshing, setRefreshing] = useState(false);
 
@@ -19,8 +25,6 @@ const Home = () => {
     await refetch();
     setRefreshing(false);
   };
-
-  console.log(posts);
 
   return (
     <SafeAreaView className="bg-white h-full">
@@ -56,7 +60,7 @@ const Home = () => {
               </Text>
             </View>
 
-            <Trending post={[]} />
+            <Trending post={latestPosts} />
           </View>
         )}
         ListEmptyComponent={() => (
