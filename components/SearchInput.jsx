@@ -86,7 +86,6 @@ const SearchInput = ({ initialQuery }) => {
             return Alert.alert("Idiot", "Please search something");
           }
           if (pathName.startsWith("/search")) {
-            console.log("True");
             router.setParams({ query });
           } else {
             router.push(`/search/${query}`);

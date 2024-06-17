@@ -8,6 +8,7 @@ const FormField = ({
   handleChangeText,
   otherStyles,
   borderStyle,
+  multiline,
 }) => {
   const [showPassword, setshowPassword] = useState(false);
 
@@ -23,6 +24,8 @@ const FormField = ({
           placeholder={placeholder}
           placeholderTextColor={"#7b7b8b"}
           onChangeText={handleChangeText}
+          multiline={multiline || false}
+          blurOnSubmit
           secureTextEntry={
             (title === "Password" || title === "Confirm Password") &&
             !showPassword
