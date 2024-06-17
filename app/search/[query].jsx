@@ -17,7 +17,6 @@ const Search = () => {
   } = useAppwrite(() => searchPosts(query));
 
   useEffect(() => {
-    console.log(isLoading);
     refetch();
   }, [query]);
 

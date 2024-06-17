@@ -16,7 +16,7 @@ import { getCurrentUser, signIn } from "../../lib/appwrite";
 import { useGlobalContext } from "../../context/GlobalProvider";
 
 const SignIn = () => {
-  const { setUser, setIsLoading } = useGlobalContext();
+  const { setUser, setIsLoading, setIsLoggedIn } = useGlobalContext();
 
   const [form, setForm] = useState({
     email: "",
@@ -34,9 +34,9 @@ const SignIn = () => {
 
     try {
       await signIn(form.email, form.password);
-      // const result = await getCurrentUser();
-      // setUser(result);
-      // setIsLoggedIn(true);
+      const result = await getCurrentUser();
+      setUser(result);
+      setIsLoggedIn(true);
 
       Alert.alert("Login", "Successfully");
       router.replace("/home");
