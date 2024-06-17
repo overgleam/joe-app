@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Image,
   Platform,
+  Alert,
 } from "react-native";
 import React, { useState } from "react";
 import { icons } from "../constants";
@@ -14,18 +15,11 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
+import { router, usePathname } from "expo-router";
 
-const SearchInput = ({
-  title,
-  value,
-  placeholder,
-  handleChangeText,
-  otherStyles,
-  borderStyle,
-  animatedContainerStyles,
-  ...props
-}) => {
-  const [showPassword, setshowPassword] = useState(false);
+const SearchInput = ({ initialQuery }) => {
+  const pathName = usePathname();
+  const [query, setQuery] = useState(initialQuery || "");
 
   const translateX = useSharedValue(6);
   const translateY = useSharedValue(6);
@@ -65,7 +59,7 @@ const SearchInput = ({
 
   return (
     <Animated.View
-      className={`w-full flex-row border-2 bg-white-200 border-rose-500 h-16 px-4 bg-black-100 rounded-2xl ${borderStyle} focus:border-emerald-500 items-center `}
+      className={`w-full flex-row border-2 bg-white-200 border-rose-500 h-16 px-4 bg-black-100 rounded-2xl focus:border-emerald-500 items-center `}
       style={[
         {
           shadowOffset: { height: 6, width: 6 },
@@ -79,18 +73,26 @@ const SearchInput = ({
     >
       <TextInput
         className="flex-1 text-primary font-pregular mb-0.5 text-base"
-        value={value}
-        placeholder={placeholder}
+        value={query}
+        placeholder={"Search anything you want"}
         placeholderTextColor={"#7b7b8b"}
-        onChangeText={handleChangeText}
-        secureTextEntry={
-          (title === "Password" || title === "Confirm Password") &&
-          !showPassword
-        }
+        onChangeText={(e) => setQuery(e)}
         onFocus={onFocus}
         onBlur={onBlur}
       />
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          if (!query) {
+            return Alert.alert("Idiot", "Please search something");
+          }
+          if (pathName.startsWith("/search")) {
+            console.log("True");
+            router.setParams({ query });
+          } else {
+            router.push(`/search/${query}`);
+          }
+        }}
+      >
         <Image
           source={icons.search}
           className="w-5 h-5"

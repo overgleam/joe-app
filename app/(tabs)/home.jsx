@@ -1,5 +1,5 @@
 import { View, Text, FlatList, Image, RefreshControl } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import images from "../../constants/images";
 import SearchInput from "../../components/SearchInput";
@@ -14,8 +14,8 @@ const Home = () => {
 
   const {
     data: latestPosts,
-    refetch: latestPostsRefetch,
-    isLoading: latestPostsLoading,
+    // refetch: latestPostsRefetch,
+    // isLoading: latestPostsLoading,
   } = useAppwrite(getLatestPosts);
 
   const [refreshing, setRefreshing] = useState(false);
@@ -49,7 +49,7 @@ const Home = () => {
                 />
               </View>
             </View>
-            <SearchInput placeholder={"Search anything you want"} />
+            <SearchInput />
 
             <View className="w-full flex-1 pt-5 pb-8">
               <Text

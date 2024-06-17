@@ -43,7 +43,7 @@ const TrendingItem = ({ activeItem, item }) => {
           source={{
             uri: item.video,
           }}
-          className="w-52 h-72 rounded-[35px] mt-3 bg-white-100 my-5"
+          className="w-52 h-72 rounded-[35px] bg-white-100 my-5"
           resizeMode={ResizeMode.COVER}
           useNativeControls
           shouldPlay
@@ -54,12 +54,18 @@ const TrendingItem = ({ activeItem, item }) => {
       ) : (
         <TouchableOpacity
           className="relative justify-center items-center"
+          style={{
+            shadowColor: "#2c3034",
+            shadowOffset: { width: 6, height: 4 },
+            shadowOpacity: 1,
+            shadowRadius: 0,
+          }}
           activeOpacity={0.7}
           onPress={() => setPlay(true)}
         >
           <ImageBackground
             source={{ uri: item.thumbnail }}
-            className="w-52 h-72 rounded-[35px] my-5 overflow-hidden shadow-lg shadow-black"
+            className="w-52 h-72 rounded-[35px] my-5 overflow-hidden border border-black"
             resizeMode="cover"
           />
 
